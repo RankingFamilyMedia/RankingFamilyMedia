@@ -183,31 +183,35 @@ export default function MusicPage() {
     return (
        <div className="space-y-4">
             {songs.map((song) => (
-                <Card key={song.id} className="bg-gray-800 border-gray-700 flex items-center p-3 transition-colors hover:bg-gray-700/50">
-                  <div className="relative h-16 w-16 flex-shrink-0 rounded-md overflow-hidden">
-                    <Image src={song.imageUrl || 'https://picsum.photos/200'} alt={song.title} fill style={{objectFit:"cover"}} />
-                  </div>
-                  {song.audioUrl && (
-                    <Button variant="ghost" size="icon" className="ml-3" onClick={(e) => handlePlayPause(e, song.id, song.audioUrl)} disabled={loadingTrack === song.id}>
-                      {loadingTrack === song.id ? (
-                        <Loader2 className="h-5 w-5 animate-spin" />
-                      ) : nowPlaying === song.id ? (
-                        <Pause className="h-5 w-5" />
-                      ) : (
-                        <Play className="h-5 w-5" />
-                      )}
-                    </Button>
-                  )}
-                  <div className="flex-grow ml-4">
-                    <h4 className="font-semibold" dangerouslySetInnerHTML={{ __html: song.title}} />
-                    <p className="text-sm text-gray-400">{song.artist}</p>
-                  </div>
-                   <div className="flex gap-2 ml-4">
-                     <Link href={`/music/${song.id}`}>
-                        <Button variant="outline"><Info className="h-4 w-4" /></Button>
-                     </Link>
-                  </div>
-                </Card>
+              <Link key={song.id} href={`/music/${song.id}`} legacyBehavior>
+                <a className="block">
+                  <Card className="bg-gray-800 border-gray-700 flex items-center p-3 transition-colors hover:bg-gray-700/50">
+                    <div className="relative h-16 w-16 flex-shrink-0 rounded-md overflow-hidden">
+                      <Image src={song.imageUrl || 'https://picsum.photos/200'} alt={song.title} fill style={{objectFit:"cover"}} />
+                    </div>
+                    {song.audioUrl && (
+                      <Button variant="ghost" size="icon" className="ml-3" onClick={(e) => handlePlayPause(e, song.id, song.audioUrl)} disabled={loadingTrack === song.id}>
+                        {loadingTrack === song.id ? (
+                          <Loader2 className="h-5 w-5 animate-spin" />
+                        ) : nowPlaying === song.id ? (
+                          <Pause className="h-5 w-5" />
+                        ) : (
+                          <Play className="h-5 w-5" />
+                        )}
+                      </Button>
+                    )}
+                    <div className="flex-grow ml-4">
+                      <h4 className="font-semibold" dangerouslySetInnerHTML={{ __html: song.title}} />
+                      <p className="text-sm text-gray-400">{song.artist}</p>
+                    </div>
+                    <div className="flex gap-2 ml-4">
+                      <Button variant="outline" size="icon" className="pointer-events-none">
+                        <Info className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </Card>
+                </a>
+              </Link>
             ))}
         </div>
     );
