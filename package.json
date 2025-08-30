@@ -28,7 +28,8 @@
     "@radix-ui/react-popover": "^1.1.1",
     "genkit": "^1.0.0",
     "@genkit-ai/googleai": "^1.0.0",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "@radix-ui/react-avatar": "^1.1.0"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -41,5 +42,3 @@
     "tailwindcss": "^3.4.6"
   }
 }
-
-    
