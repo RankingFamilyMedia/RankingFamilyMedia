@@ -26,6 +26,8 @@ import {
   Upload,
   Radio,
   Mic,
+  Headphones,
+  Sparkles,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -34,49 +36,36 @@ const services = [
     icon: <Album className="h-12 w-12 text-primary" />,
     title: 'Record Label',
     description:
-      'Comprehensive artist development, music production, global distribution, and strategic marketing campaigns to launch and sustain careers.',
+      'Full-service support for aspiring artists. We offer A&R, production, distribution, and marketing to build and sustain musical careers.',
     link: '/record-deals',
   },
   {
     icon: <Users className="h-12 w-12 text-primary" />,
     title: 'Artist Management',
     description:
-      'Dedicated career guidance, booking, and promotional support for emerging and established artists. We handle the business so you can focus on the music.',
+      'Strategic career guidance for established and emerging artists. We handle bookings, press, and brand partnerships so you can focus on your art.',
     link: '/record-deals',
-  },
-  {
-    icon: <Calendar className="h-12 w-12 text-primary" />,
-    title: 'Event Organising & Production',
-    description:
-      'Full-scale production for concerts, festivals, and corporate events. We manage everything from staging and sound to logistics and promotion.',
-    link: '/contact',
   },
   {
     icon: <Waves className="h-12 w-12 text-primary" />,
     title: 'Recording Studio',
     description:
-      'State-of-the-art recording facilities with professional engineers for tracking, mixing, and mastering your next hit. Base rate: GHS 500 per 4 hours.',
+      'Access our state-of-the-art recording facilities for tracking, mixing, and mastering. Base rate: GHS 500 per 4-hour session.',
     isStudio: true,
   },
   {
     icon: <Film className="h-12 w-12 text-primary" />,
-    title: 'Movies & Film Production',
+    title: 'Movie & Video Production',
     description:
       'High-quality music video production, from concept development and storyboarding to final cut. We also provide scoring and soundtrack services for film.',
     link: '/video-production',
   },
   {
-    icon: <Podcast className="h-12 w-12 text-primary" />,
-    title: 'Podcast Production',
+    icon: <Calendar className="h-12 w-12 text-primary" />,
+    title: 'Event Organising & Production',
     description:
-      'Professional audio and video podcast recording and production services. We help you create engaging content with pristine sound and visuals.',
+      'Full-scale production for concerts, festivals, and corporate functions. We manage everything from staging and sound to logistics and talent booking.',
     link: '/contact',
-  },
-  {
-    icon: <Upload className="h-12 w-12 text-primary" />,
-    title: 'Music Distribution',
-    description: 'Get your music on all major platforms worldwide, including Spotify, Apple Music, and more.',
-    link: '/music'
   },
   {
     icon: <Radio className="h-12 w-12 text-primary" />,
@@ -84,8 +73,39 @@ const services = [
     description: 'Strategic media campaigns to get your music, brand, or event heard by a wider audience through radio, online press, and social media.',
     link: '/promotions'
   },
+  {
+    icon: <Upload className="h-12 w-12 text-primary" />,
+    title: 'Music Distribution',
+    description: 'Get your music on all major platforms worldwide, including Spotify, Apple Music, and more, with our streamlined distribution service.',
+    link: '/music'
+  },
+   {
+    icon: <Headphones className="h-12 w-12 text-primary" />,
+    title: 'Audio Production',
+    description: 'Professional production of jingles, commercials, soundtracks, and voice-overs. Perfect for brands, filmmakers, and content creators.',
+    link: '/contact'
+  },
+  {
+    icon: <Podcast className="h-12 w-12 text-primary" />,
+    title: 'Podcast Studio Rental',
+    description:
+      'Rent our fully-equipped podcast studio for pristine audio and video recording. Includes access to professional microphones and mixing gear.',
+    link: '/contact',
+  },
    {
     icon: <Mic className="h-12 w-12 text-primary" />,
+    title: 'Equipment Rentals',
+    description: 'Professional-grade media equipment available for rent. Ideal for film shoots, live events, and independent recording sessions.',
+    link: '/contact'
+  },
+  {
+    icon: <Sparkles className="h-12 w-12 text-primary" />,
+    title: 'Mixing & Mastering',
+    description: 'Our expert engineers will give your tracks a professional, polished sound, ready for commercial release. Single track and album rates available.',
+    isStudio: true,
+  },
+   {
+    icon: <Users className="h-12 w-12 text-primary" />,
     title: 'Corporate & Private Events',
     description: 'Professional A/V and entertainment solutions for any function, from corporate galas to private parties. Let us make your event unforgettable.',
     link: '/contact'
@@ -106,7 +126,7 @@ function StudioBookingForm() {
             <DialogHeader>
                 <DialogTitle>Book a Studio Session</DialogTitle>
                 <DialogDescription>
-                    Fill out the form below to request a booking. Our team will contact you to confirm the details.
+                    Fill out the form below to request a booking for studio time, mixing, or mastering. Our team will contact you to confirm the details.
                 </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="grid gap-4 py-4">
@@ -184,7 +204,7 @@ export default function ServicesPage() {
                 >
                   <CardHeader className="items-center">
                     {service.icon}
-                    <CardTitle className="mt-4 text-2xl">
+                    <CardTitle className="mt-4 text-2xl h-16">
                       {service.title}
                     </CardTitle>
                   </CardHeader>
