@@ -62,13 +62,13 @@ const services = [
     icon: <Waves className="h-12 w-12 text-primary" />,
     title: 'Recording Studio Rental',
     description: 'Access our state-of-the-art recording facilities for tracking, mixing, and mastering sessions.',
-    link: '/studio-rental',
+    link: '/studio-rental#recording',
   },
    {
     icon: <Podcast className="h-12 w-12 text-primary" />,
     title: 'Podcast Studio Rental',
     description: 'Rent our fully-equipped podcast studio for pristine audio and video recording.',
-    link: '/studio-rental',
+    link: '/studio-rental#podcast',
   },
    {
     icon: <Mic className="h-12 w-12 text-primary" />,
@@ -159,3 +159,5 @@ export default function ServicesPage() {
       </div>
   );
 }
+
+    

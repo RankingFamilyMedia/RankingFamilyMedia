@@ -9,18 +9,21 @@ import Link from 'next/link';
 
 const rentalOptions = [
   {
+    id: 'recording',
     icon: <Waves className="h-10 w-10 text-primary" />,
     title: 'Recording Studio Rental',
     description: 'Our main recording studio features a treated live room, vocal booth, and control room with industry-standard preamps and software.',
     rate: 'GHS 500 / 4-hour block',
   },
   {
+    id: 'podcast',
     icon: <Podcast className="h-10 w-10 text-primary" />,
     title: 'Podcast Studio Rental',
     description: 'A dedicated, soundproofed room with professional podcasting microphones, a multi-channel mixer, and optional video recording.',
     rate: 'GHS 300 / 2-hour block',
   },
   {
+    id: 'vocal',
     icon: <Mic className="h-10 w-10 text-primary" />,
     title: 'Vocal Booth Rental',
     description: 'Need to track vocals or a solo instrument? Rent our isolated vocal booth for pristine, clean recordings.',
@@ -58,7 +61,7 @@ export default function StudioRentalPage() {
             </div>
             <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
               {rentalOptions.map((option) => (
-                <Card key={option.title} className="border-gray-700 bg-gray-800 text-center flex flex-col">
+                <Card key={option.id} id={option.id} className="border-gray-700 bg-gray-800 text-center flex flex-col scroll-mt-24">
                   <CardHeader className="items-center">
                     {option.icon}
                     <CardTitle className="mt-4 text-2xl">{option.title}</CardTitle>
@@ -91,3 +94,5 @@ export default function StudioRentalPage() {
     </div>
   );
 }
+
+    

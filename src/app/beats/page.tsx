@@ -347,9 +347,11 @@ export default function BeatsPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                 <Button className="w-full">
-                   <LogIn className="mr-2 h-4 w-4" /> Producer Login
-                </Button>
+                <a href="https://grinomuzik.com" target="_blank" rel="noopener noreferrer" className="w-full">
+                   <Button className="w-full">
+                     <LogIn className="mr-2 h-4 w-4" /> Producer Login
+                  </Button>
+                </a>
               </CardContent>
             </Card>
           </aside>
@@ -359,3 +361,5 @@ export default function BeatsPage() {
     </div>
   );
 }
+
+    
