@@ -8,9 +8,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Trash2, Edit, WifiOff, Play, Pause, ListMusic, Upload, Loader2, Search, CheckCircle, XCircle } from 'lucide-react';
+import { Trash2, Edit, WifiOff, Play, Pause, ListMusic, Upload, Loader2, Search, CheckCircle, XCircle, FileCheck, FileWarning } from 'lucide-react';
 import Image from 'next/image';
 import { analyzeSeo, SeoAnalysis } from '@/ai/flows/seo-flow';
+import Papa from 'papaparse';
 
 interface Beat {
   id: number;
@@ -153,20 +154,66 @@ function ExistingBeats() {
 
 function SubscribersManager() {
   const [subscribersFile, setSubscribersFile] = useState<File | null>(null);
+  const [isImporting, setIsImporting] = useState(false);
+  const [importStatus, setImportStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
+    setImportStatus(null);
+    if (e.target.files && e.target.files.length > 0) {
       setSubscribersFile(e.target.files[0]);
+    } else {
+      setSubscribersFile(null);
     }
   };
 
   const handleImport = () => {
-    if (subscribersFile) {
-      // Placeholder for actual import logic
-      alert(`(Placeholder) Importing subscribers from ${subscribersFile.name}`);
-    } else {
-      alert("Please select a file to import.");
+    if (!subscribersFile) {
+      setImportStatus({ type: 'error', message: 'Please select a file to import.' });
+      return;
     }
+
+    setIsImporting(true);
+    setImportStatus(null);
+
+    Papa.parse(subscribersFile, {
+      header: true,
+      skipEmptyLines: true,
+      complete: (results) => {
+        if (results.errors.length > 0) {
+          setImportStatus({ type: 'error', message: `Error parsing CSV: ${results.errors[0].message}` });
+          setIsImporting(false);
+          return;
+        }
+
+        if (!results.meta.fields?.includes('email')) {
+          setImportStatus({ type: 'error', message: "CSV must contain an 'email' column." });
+          setIsImporting(false);
+          return;
+        }
+
+        const emails = results.data
+          .map((row: any) => row.email)
+          .filter(email => typeof email === 'string' && email.includes('@'));
+
+        if (emails.length === 0) {
+          setImportStatus({ type: 'error', message: 'No valid email addresses found in the file.' });
+          setIsImporting(false);
+          return;
+        }
+
+        // Placeholder for backend API call
+        console.log('Imported emails:', emails);
+
+        setImportStatus({ type: 'success', message: `Successfully imported ${emails.length} subscribers.` });
+        setIsImporting(false);
+        setSubscribersFile(null);
+        (document.getElementById('subscribers-csv') as HTMLInputElement).value = '';
+      },
+      error: (error) => {
+        setImportStatus({ type: 'error', message: `An error occurred: ${error.message}` });
+        setIsImporting(false);
+      }
+    });
   };
 
   return (
@@ -186,13 +233,20 @@ function SubscribersManager() {
             accept=".csv" 
             onChange={handleFileChange} 
             className="bg-gray-900 border-gray-600"
+            disabled={isImporting}
           />
           <p className="text-sm text-muted-foreground">Upload a CSV file with an 'email' column.</p>
         </div>
-        <Button size="lg" className="w-full bg-green-600 hover:bg-green-700" onClick={handleImport}>
-          <Upload className="mr-2 h-5 w-5" />
-          Import Subscribers
+        <Button size="lg" className="w-full bg-green-600 hover:bg-green-700" onClick={handleImport} disabled={!subscribersFile || isImporting}>
+          {isImporting ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Upload className="mr-2 h-5 w-5" />}
+          {isImporting ? 'Importing...' : 'Import Subscribers'}
         </Button>
+        {importStatus && (
+          <div className={`flex items-center gap-3 rounded-md p-3 text-sm ${importStatus.type === 'success' ? 'bg-green-900/50 text-green-300' : 'bg-destructive/20 text-destructive'}`}>
+            {importStatus.type === 'success' ? <FileCheck className="h-5 w-5" /> : <FileWarning className="h-5 w-5" />}
+            <p>{importStatus.message}</p>
+          </div>
+        )}
       </CardContent>
     </Card>
   );
@@ -365,4 +419,3 @@ export default function AdminPage() {
   );
 }
 
-    
