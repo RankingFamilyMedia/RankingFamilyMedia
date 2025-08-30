@@ -88,24 +88,26 @@ export default function VideosPage() {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {videos.map((video) => (
-          <Link href={`/videos/${video.id}`} key={video.id}>
-            <Card className="bg-gray-800 border-gray-700 overflow-hidden group h-full flex flex-col hover:border-primary transition-colors">
-              <div className="relative h-48 w-full">
-                <Image
-                  src={video.imageUrl}
-                  alt={video.title}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  className="transition-transform duration-300 group-hover:scale-110"
-                />
-                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <PlayCircle className="h-16 w-16 text-white" />
-                 </div>
-              </div>
-              <CardHeader>
-                <CardTitle className="text-lg">{video.title}</CardTitle>
-              </CardHeader>
-            </Card>
+          <Link href={`/videos/${video.id}`} key={video.id} legacyBehavior>
+            <a className="block group">
+              <Card className="bg-gray-800 border-gray-700 overflow-hidden h-full flex flex-col hover:border-primary transition-colors duration-300">
+                <div className="relative h-48 w-full">
+                  <Image
+                    src={video.imageUrl}
+                    alt={video.title}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    className="transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <PlayCircle className="h-16 w-16 text-white" />
+                  </div>
+                </div>
+                <CardHeader>
+                  <CardTitle className="text-lg" dangerouslySetInnerHTML={{ __html: video.title }} />
+                </CardHeader>
+              </Card>
+            </a>
           </Link>
         ))}
       </div>
