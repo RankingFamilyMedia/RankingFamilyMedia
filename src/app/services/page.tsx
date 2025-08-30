@@ -5,17 +5,6 @@ import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import {
   Album,
   Users,
   Calendar,
@@ -28,153 +17,81 @@ import {
   Mic,
   Headphones,
   Sparkles,
+  Building,
 } from 'lucide-react';
 import Link from 'next/link';
 
 const services = [
   {
     icon: <Album className="h-12 w-12 text-primary" />,
-    title: 'Record Label',
-    description:
-      'Full-service support for aspiring artists. We offer A&R, production, distribution, and marketing to build and sustain musical careers.',
+    title: 'Record Label & Artist Management',
+    description: 'Full-service support, A&R, and strategic career guidance to build and sustain musical careers.',
     link: '/record-deals',
-  },
-  {
-    icon: <Users className="h-12 w-12 text-primary" />,
-    title: 'Artist Management',
-    description:
-      'Strategic career guidance for established and emerging artists. We handle bookings, press, and brand partnerships so you can focus on your art.',
-    link: '/record-deals',
-  },
-  {
-    icon: <Waves className="h-12 w-12 text-primary" />,
-    title: 'Recording Studio',
-    description:
-      'Access our state-of-the-art recording facilities for tracking, mixing, and mastering. Base rate: GHS 500 per 4-hour session.',
-    isStudio: true,
   },
   {
     icon: <Film className="h-12 w-12 text-primary" />,
     title: 'Movie & Video Production',
-    description:
-      'High-quality music video production, from concept development and storyboarding to final cut. We also provide scoring and soundtrack services for film.',
+    description: 'High-quality music video production, from concept development to final cut.',
     link: '/video-production',
   },
   {
     icon: <Calendar className="h-12 w-12 text-primary" />,
     title: 'Event Organising & Production',
-    description:
-      'Full-scale production for concerts, festivals, and corporate functions. We manage everything from staging and sound to logistics and talent booking.',
-    link: '/contact',
+    description: 'Full-scale production for concerts, festivals, and tours. We manage staging, sound, and logistics.',
+    link: '/event-production',
   },
   {
     icon: <Radio className="h-12 w-12 text-primary" />,
     title: 'Media Promotions',
-    description: 'Strategic media campaigns to get your music, brand, or event heard by a wider audience through radio, online press, and social media.',
-    link: '/promotions'
+    description: 'Strategic media campaigns to get your music, brand, or event heard by a wider audience.',
+    link: '/promotions',
   },
   {
     icon: <Upload className="h-12 w-12 text-primary" />,
     title: 'Music Distribution',
-    description: 'Get your music on all major platforms worldwide, including Spotify, Apple Music, and more, with our streamlined distribution service.',
-    link: '/music'
-  },
-   {
-    icon: <Headphones className="h-12 w-12 text-primary" />,
-    title: 'Audio Production',
-    description: 'Professional production of jingles, commercials, soundtracks, and voice-overs. Perfect for brands, filmmakers, and content creators.',
-    link: '/contact'
+    description: 'Get your music on all major platforms worldwide, including Spotify, Apple Music, and more.',
+    link: '/music-distribution',
   },
   {
+    icon: <Headphones className="h-12 w-12 text-primary" />,
+    title: 'Audio Production',
+    description: 'Professional production of jingles, commercials, soundtracks, and voice-overs for brands and media.',
+    link: '/audio-production',
+  },
+   {
+    icon: <Waves className="h-12 w-12 text-primary" />,
+    title: 'Recording Studio Rental',
+    description: 'Access our state-of-the-art recording facilities for tracking, mixing, and mastering sessions.',
+    link: '/studio-rental',
+  },
+   {
     icon: <Podcast className="h-12 w-12 text-primary" />,
     title: 'Podcast Studio Rental',
-    description:
-      'Rent our fully-equipped podcast studio for pristine audio and video recording. Includes access to professional microphones and mixing gear.',
-    link: '/contact',
+    description: 'Rent our fully-equipped podcast studio for pristine audio and video recording.',
+    link: '/studio-rental',
   },
    {
     icon: <Mic className="h-12 w-12 text-primary" />,
     title: 'Equipment Rentals',
-    description: 'Professional-grade media equipment available for rent. Ideal for film shoots, live events, and independent recording sessions.',
-    link: '/contact'
+    description: 'Professional-grade media equipment available for rent for film shoots, live events, and recording.',
+    link: '/equipment-rental',
   },
   {
     icon: <Sparkles className="h-12 w-12 text-primary" />,
     title: 'Mixing & Mastering',
-    description: 'Our expert engineers will give your tracks a professional, polished sound, ready for commercial release. Single track and album rates available.',
-    isStudio: true,
+    description: 'Our expert engineers give your tracks a professional, polished sound, ready for commercial release.',
+    link: '/mixing-mastering',
   },
    {
-    icon: <Users className="h-12 w-12 text-primary" />,
+    icon: <Building className="h-12 w-12 text-primary" />,
     title: 'Corporate & Private Events',
-    description: 'Professional A/V and entertainment solutions for any function, from corporate galas to private parties. Let us make your event unforgettable.',
-    link: '/contact'
+    description: 'Professional A/V and entertainment solutions for any function, from corporate galas to private parties.',
+    link: '/corporate-events',
   }
 ];
 
-
-function StudioBookingForm() {
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        alert('(Placeholder) Booking request submitted! We will contact you shortly to confirm.');
-        // Here you would typically handle the form submission, e.g., send an email or API request.
-        // You might want to close the dialog after submission.
-    };
-
-    return (
-        <DialogContent className="sm:max-w-[480px]">
-            <DialogHeader>
-                <DialogTitle>Book a Studio Session</DialogTitle>
-                <DialogDescription>
-                    Fill out the form below to request a booking for studio time, mixing, or mastering. Our team will contact you to confirm the details.
-                </DialogDescription>
-            </DialogHeader>
-            <form onSubmit={handleSubmit} className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="name" className="text-right">
-                        Name
-                    </Label>
-                    <Input id="name" required className="col-span-3 bg-gray-900 border-gray-600" />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="email" className="text-right">
-                        Email
-                    </Label>
-                    <Input id="email" type="email" required className="col-span-3 bg-gray-900 border-gray-600" />
-                </div>
-                 <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="phone" className="text-right">
-                        Phone
-                    </Label>
-                    <Input id="phone" type="tel" required className="col-span-3 bg-gray-900 border-gray-600" />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="request" className="text-right">
-                        Request
-                    </Label>
-                    <textarea 
-                        id="request" 
-                        required 
-                        placeholder="Please describe your needs (e.g., 4-hour vocal session, full day production, mixing & mastering for 1 track, etc.)"
-                        rows={4}
-                        className="col-span-3 flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-900 border-gray-600" 
-                    />
-                </div>
-                <p className="text-center text-sm text-muted-foreground pt-2">
-                    Studio Rate: GHS 500 per 4 hours. We'll provide a full quote based on your request.
-                </p>
-            
-                <DialogFooter>
-                    <Button type="submit">Submit Booking Request</Button>
-                </DialogFooter>
-            </form>
-        </DialogContent>
-    );
-}
-
 export default function ServicesPage() {
   return (
-    <Dialog>
       <div className="flex min-h-screen flex-col bg-[#1a1a1a] text-white">
         <main className="flex-1">
           <section
@@ -212,19 +129,11 @@ export default function ServicesPage() {
                     <p className="text-gray-400">{service.description}</p>
                   </CardContent>
                   <div className="p-6 pt-0">
-                    {service.isStudio ? (
-                       <DialogTrigger asChild>
-                         <Button variant="default" className="w-full">
-                            Book Now
-                         </Button>
-                       </DialogTrigger>
-                    ) : (
-                       <Link href={service.link || '/contact'}>
-                        <Button variant="outline" className="w-full">
-                            Learn More
-                        </Button>
-                       </Link>
-                    )}
+                     <Link href={service.link || '/contact'}>
+                      <Button variant="outline" className="w-full">
+                          Learn More
+                      </Button>
+                     </Link>
                   </div>
                 </Card>
               ))}
@@ -247,8 +156,6 @@ export default function ServicesPage() {
           </section>
         </main>
         <Footer />
-        <StudioBookingForm />
       </div>
-    </Dialog>
   );
 }
