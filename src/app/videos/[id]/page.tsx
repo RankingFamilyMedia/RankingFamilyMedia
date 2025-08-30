@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { AdWidget } from '@/components/ad-widget';
 import { LikeShare } from '@/components/like-share';
+import { DummyComments } from '@/components/dummy-comments';
 
 interface VideoPost {
   id: number;
@@ -113,19 +114,26 @@ export default function VideoPage({ params }: { params: { id: string } }) {
         return <p>Video not found.</p>
     }
     
+    const videoContent = (
+      <div>
+        <h1 className="mt-8 text-3xl font-bold md:text-5xl" dangerouslySetInnerHTML={{ __html: video.title }} />
+        <LikeShare title={video.title} />
+        <div 
+            className="prose prose-invert lg:prose-xl mt-4 max-w-none" 
+            dangerouslySetInnerHTML={{ __html: video.content }}
+        />
+        <DummyComments />
+      </div>
+    );
+    
     if (!video.youtubeId) {
         return (
              <div className="text-center">
-                <h1 className="mt-8 text-3xl font-bold md:text-5xl" dangerouslySetInnerHTML={{ __html: video.title }} />
-                 <LikeShare title={video.title} />
-                <div 
-                  className="prose prose-invert lg:prose-xl mt-4 max-w-none mx-auto" 
-                  dangerouslySetInnerHTML={{ __html: video.content }}
-                />
                 <p className="text-lg text-gray-400 mt-8">Could not find a valid YouTube video to embed.</p>
                 <a href={video.link} target="_blank" rel="noopener noreferrer">
                     <Button className="mt-4">Watch on External Site</Button>
                 </a>
+                {videoContent}
             </div>
         )
     }
@@ -142,12 +150,7 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                     allowFullScreen
                 ></iframe>
             </div>
-            <h1 className="mt-8 text-3xl font-bold md:text-5xl" dangerouslySetInnerHTML={{ __html: video.title }} />
-            <LikeShare title={video.title} />
-            <div 
-                className="prose prose-invert lg:prose-xl mt-4 max-w-none" 
-                dangerouslySetInnerHTML={{ __html: video.content }}
-            />
+            {videoContent}
         </div>
     )
   };

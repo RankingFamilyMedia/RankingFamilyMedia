@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { AdWidget } from '@/components/ad-widget';
 import { LikeShare } from '@/components/like-share';
+import { DummyComments } from '@/components/dummy-comments';
 
 interface Song {
   id: number;
@@ -134,32 +135,35 @@ export default function SongPage({ params }: { params: { id: string } }) {
     }
 
     return (
-        <div className="w-full flex flex-col md:flex-row gap-8">
-            <div className="md:w-1/3 flex-shrink-0">
-                <div className="relative aspect-square w-full rounded-lg overflow-hidden shadow-2xl">
-                    <Image 
-                        src={song.imageUrl}
-                        alt={song.title}
-                        fill
-                        style={{objectFit: "cover"}}
-                    />
+        <div>
+            <div className="w-full flex flex-col md:flex-row gap-8">
+                <div className="md:w-1/3 flex-shrink-0">
+                    <div className="relative aspect-square w-full rounded-lg overflow-hidden shadow-2xl">
+                        <Image 
+                            src={song.imageUrl}
+                            alt={song.title}
+                            fill
+                            style={{objectFit: "cover"}}
+                        />
+                    </div>
+                    {song.audioUrl && (
+                        <Button onClick={handlePlayPause} size="lg" className="w-full mt-4">
+                            {isPlaying ? <Pause className="mr-2 h-5 w-5" /> : <Play className="mr-2 h-5 w-5" />}
+                            {isPlaying ? 'Pause' : 'Play'}
+                        </Button>
+                    )}
                 </div>
-                {song.audioUrl && (
-                    <Button onClick={handlePlayPause} size="lg" className="w-full mt-4">
-                        {isPlaying ? <Pause className="mr-2 h-5 w-5" /> : <Play className="mr-2 h-5 w-5" />}
-                        {isPlaying ? 'Pause' : 'Play'}
-                    </Button>
-                )}
+                <div className="md:w-2/3">
+                     <h1 className="text-3xl font-bold md:text-5xl leading-tight" dangerouslySetInnerHTML={{ __html: song.title }} />
+                     <p className="text-2xl text-gray-400 mt-2">{song.artist}</p>
+                     <LikeShare title={`${song.title} by ${song.artist}`} />
+                     <div 
+                        className="prose prose-invert lg:prose-lg mt-8 max-w-none" 
+                        dangerouslySetInnerHTML={{ __html: song.content }}
+                     />
+                </div>
             </div>
-            <div className="md:w-2/3">
-                 <h1 className="text-3xl font-bold md:text-5xl leading-tight" dangerouslySetInnerHTML={{ __html: song.title }} />
-                 <p className="text-2xl text-gray-400 mt-2">{song.artist}</p>
-                 <LikeShare title={`${song.title} by ${song.artist}`} />
-                 <div 
-                    className="prose prose-invert lg:prose-lg mt-8 max-w-none" 
-                    dangerouslySetInnerHTML={{ __html: song.content }}
-                 />
-            </div>
+            <DummyComments />
         </div>
     );
   };

@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { AdWidget } from '@/components/ad-widget';
 import { LikeShare } from '@/components/like-share';
+import { DummyComments } from '@/components/dummy-comments';
 
 interface Article {
   id: number;
@@ -146,6 +147,7 @@ export default function NewsArticlePage({ params }: { params: { id: string } }) 
                 className="prose prose-invert lg:prose-xl mt-8 max-w-none" 
                 dangerouslySetInnerHTML={{ __html: article.content }}
             />
+            <DummyComments />
         </article>
     );
   };
