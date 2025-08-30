@@ -35,14 +35,14 @@ const services = [
     title: 'Record Label',
     description:
       'Comprehensive artist development, music production, global distribution, and strategic marketing campaigns to launch and sustain careers.',
-    link: '/about',
+    link: '/record-deals',
   },
   {
     icon: <Users className="h-12 w-12 text-primary" />,
     title: 'Artist Management',
     description:
       'Dedicated career guidance, booking, and promotional support for emerging and established artists. We handle the business so you can focus on the music.',
-    link: '/about',
+    link: '/record-deals',
   },
   {
     icon: <Calendar className="h-12 w-12 text-primary" />,
@@ -63,7 +63,7 @@ const services = [
     title: 'Movies & Film Production',
     description:
       'High-quality music video production, from concept development and storyboarding to final cut. We also provide scoring and soundtrack services for film.',
-    link: '/videos',
+    link: '/video-production',
   },
   {
     icon: <Podcast className="h-12 w-12 text-primary" />,
