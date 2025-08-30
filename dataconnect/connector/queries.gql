@@ -1,0 +1,15 @@
+query ListBeats {
+  beats(first: 10) {
+    edges {
+      node {
+        id
+        title
+        genre
+        bpm
+        price
+        producer
+        imageUrl
+      }
+    }
+  }
+}

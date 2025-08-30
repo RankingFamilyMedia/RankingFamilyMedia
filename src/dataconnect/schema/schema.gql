@@ -1,0 +1,12 @@
+# Application schema (tables, relationships). No queries/mutations here.
+
+# A simple table for demonstration.
+type Beats @table(name: "beats", key: "id") {
+  id: String!
+  title: String!
+  genre: String
+  bpm: Int
+  price: Float
+  producer: String
+  imageUrl: String
+}

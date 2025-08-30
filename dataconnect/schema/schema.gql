@@ -1,0 +1,33 @@
+type User @table {
+  displayName: String!
+  createdAt: Timestamp!
+  email: String
+  photoUrl: String
+}
+
+type Artist @table {
+  name: String!
+  genre: String!
+  createdAt: Timestamp!
+  bio: String
+  photoUrl: String
+  socialMediaLinks: [String]
+}
+
+type Event @table {
+  title: String!
+  date: Date!
+  time: String!
+  location: String!
+  isPublic: Boolean!
+  createdAt: Timestamp!
+  description: String
+  ticketLink: String
+  creator: User
+}
+
+type EventArtist @table(key: ["event", "artist"]) {
+  event: Event!
+  artist: Artist!
+  createdAt: Timestamp!
+}

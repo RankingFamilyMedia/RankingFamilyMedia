@@ -1,0 +1,15 @@
+# At least one deployable query or mutation must exist in the connector dir.
+# This is what fixes: "no query found in connector".
+
+# PUBLIC example query (adjust auth level to your needs)
+query ListBeats @auth(level: PUBLIC) {
+  Beats {
+    id
+    title
+    genre
+    bpm
+    price
+    producer
+    imageUrl
+  }
+}
