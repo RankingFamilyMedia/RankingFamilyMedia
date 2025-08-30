@@ -1,7 +1,7 @@
 
 'use client';
 
-import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { Footer } from '@/components/footer';
 import { Video, WifiOff, PlayCircle } from 'lucide-react';
 import Image from 'next/image';
