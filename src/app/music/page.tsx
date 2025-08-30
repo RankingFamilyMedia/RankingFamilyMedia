@@ -4,7 +4,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Footer } from '@/components/footer';
-import { Music, Play, Pause, WifiOff, ArrowLeft, ArrowRight, Newspaper, Diamond, LogIn, Loader2 } from 'lucide-react';
+import { Music, Play, Pause, WifiOff, ArrowLeft, ArrowRight, Newspaper, Diamond, LogIn, Loader2, Info } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
@@ -60,7 +60,7 @@ export default function MusicPage() {
           id: item.id,
           title: item.title.rendered,
           artist: item.meta?.artist || 'Unknown Artist',
-          imageUrl: item.featured_image_url || 'https://picsum.photos/600/400',
+          imageUrl: item.featured_image_url || 'https://picsum.photos/200',
           audioUrl: item.meta?.audio_url || '',
         }));
         setSongs(formattedSongs);
@@ -144,13 +144,14 @@ export default function MusicPage() {
       return (
         <div className="space-y-4">
           {[...Array(SONGS_PER_PAGE)].map((_, i) => (
-             <Card key={i} className="bg-gray-800 border-gray-700 animate-pulse flex items-center p-4">
-                <div className="relative h-24 w-24 flex-shrink-0 rounded-md overflow-hidden bg-gray-700"></div>
-                <div className="ml-4 h-6 bg-gray-700 rounded w-1/4"></div>
+             <Card key={i} className="bg-gray-800 border-gray-700 animate-pulse flex items-center p-3">
+                <div className="relative h-16 w-16 flex-shrink-0 rounded-md overflow-hidden bg-gray-700"></div>
+                <div className="ml-3 h-10 w-10 bg-gray-700 rounded-full"></div>
                 <div className="ml-4 flex-grow">
-                    <div className="h-6 bg-gray-700 rounded w-3/4"></div>
+                    <div className="h-5 bg-gray-700 rounded w-3/4"></div>
                     <div className="h-4 bg-gray-700 rounded w-1/2 mt-2"></div>
                 </div>
+                 <div className="ml-4 h-9 w-24 bg-gray-700 rounded-md"></div>
             </Card>
           ))}
         </div>
@@ -182,46 +183,33 @@ export default function MusicPage() {
     return (
        <div className="space-y-4">
             {songs.map((song) => (
-              <Link href={`/music/${song.id}`} key={song.id} legacyBehavior>
-                <a className="block">
-                  <Card className="bg-gray-800 border-gray-700 overflow-hidden group flex items-center p-4 transition-all hover:bg-gray-700/50">
-                    <div className="relative h-24 w-24 flex-shrink-0 rounded-md overflow-hidden">
-                        <Image 
-                            src={song.imageUrl || 'https://picsum.photos/200'} 
-                            alt={song.title} 
-                            fill
-                            style={{objectFit:"cover"}}
-                            className="transition-transform duration-300 group-hover:scale-110"
-                        />
-                    </div>
-                     {song.audioUrl && (
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
-                        className="ml-4 h-12 w-12 z-10"
-                        onClick={(e) => handlePlayPause(e, song.id, song.audioUrl)}
-                        disabled={loadingTrack === song.id}
-                      >
-                        {loadingTrack === song.id ? (
-                            <Loader2 className="h-6 w-6 animate-spin text-primary" />
-                        ) : nowPlaying === song.id ? (
-                            <Pause className="h-6 w-6 text-primary" />
-                        ) : (
-                            <Play className="h-6 w-6" />
-                        )}
-                      </Button>
-                    )}
-                    <div className="ml-4 flex-grow">
-                        <h3 className="text-xl font-bold">{song.title}</h3>
-                        <p className="text-gray-400 text-sm">
-                            {song.artist}
-                        </p>
-                    </div>
-                  </Card>
-                </a>
-              </Link>
+                <Card key={song.id} className="bg-gray-800 border-gray-700 flex items-center p-3 transition-colors hover:bg-gray-700/50">
+                  <div className="relative h-16 w-16 flex-shrink-0 rounded-md overflow-hidden">
+                    <Image src={song.imageUrl || 'https://picsum.photos/200'} alt={song.title} fill style={{objectFit:"cover"}} />
+                  </div>
+                  {song.audioUrl && (
+                    <Button variant="ghost" size="icon" className="ml-3" onClick={(e) => handlePlayPause(e, song.id, song.audioUrl)} disabled={loadingTrack === song.id}>
+                      {loadingTrack === song.id ? (
+                        <Loader2 className="h-5 w-5 animate-spin" />
+                      ) : nowPlaying === song.id ? (
+                        <Pause className="h-5 w-5" />
+                      ) : (
+                        <Play className="h-5 w-5" />
+                      )}
+                    </Button>
+                  )}
+                  <div className="flex-grow ml-4">
+                    <h4 className="font-semibold" dangerouslySetInnerHTML={{ __html: song.title}} />
+                    <p className="text-sm text-gray-400">{song.artist}</p>
+                  </div>
+                   <div className="flex gap-2 ml-4">
+                     <Link href={`/music/${song.id}`}>
+                        <Button variant="outline"><Info className="h-4 w-4" /></Button>
+                     </Link>
+                  </div>
+                </Card>
             ))}
-            </div>
+        </div>
     );
   };
 
@@ -329,5 +317,3 @@ export default function MusicPage() {
     </div>
   );
 }
-
-    
