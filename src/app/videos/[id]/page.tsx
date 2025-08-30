@@ -222,11 +222,11 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <a href="https://grinomuzik.com" target="_blank" rel="noopener noreferrer" className="w-full">
+                    <Link href="/producer/login" className="w-full">
                        <Button className="w-full">
                          <LogIn className="mr-2 h-4 w-4" /> Producer Login
                       </Button>
-                    </a>
+                    </Link>
                   </CardContent>
                 </Card>
               </aside>
@@ -237,5 +237,3 @@ export default function VideoPage({ params }: { params: { id: string } }) {
     </div>
   );
 }
-
-    
