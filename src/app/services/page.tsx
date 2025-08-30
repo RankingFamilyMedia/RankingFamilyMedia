@@ -35,18 +35,21 @@ const services = [
     title: 'Record Label',
     description:
       'Comprehensive artist development, music production, global distribution, and strategic marketing campaigns to launch and sustain careers.',
+    link: '/about',
   },
   {
     icon: <Users className="h-12 w-12 text-primary" />,
     title: 'Artist Management',
     description:
       'Dedicated career guidance, booking, and promotional support for emerging and established artists. We handle the business so you can focus on the music.',
+    link: '/contact',
   },
   {
     icon: <Calendar className="h-12 w-12 text-primary" />,
     title: 'Event Organising & Production',
     description:
       'Full-scale production for concerts, festivals, and corporate events. We manage everything from staging and sound to logistics and promotion.',
+    link: '/contact',
   },
   {
     icon: <Waves className="h-12 w-12 text-primary" />,
@@ -60,27 +63,32 @@ const services = [
     title: 'Movies & Film Production',
     description:
       'High-quality music video production, from concept development and storyboarding to final cut. We also provide scoring and soundtrack services for film.',
+    link: '/videos',
   },
   {
     icon: <Podcast className="h-12 w-12 text-primary" />,
     title: 'Podcast Production',
     description:
       'Professional audio and video podcast recording and production services. We help you create engaging content with pristine sound and visuals.',
+    link: '/contact',
   },
   {
     icon: <Upload className="h-12 w-12 text-primary" />,
     title: 'Music Distribution',
-    description: 'Get your music on all major platforms worldwide, including Spotify, Apple Music, and more.'
+    description: 'Get your music on all major platforms worldwide, including Spotify, Apple Music, and more.',
+    link: '/music'
   },
   {
     icon: <Radio className="h-12 w-12 text-primary" />,
     title: 'Media Promotions',
-    description: 'Strategic media campaigns to get your music, brand, or event heard by a wider audience through radio, online press, and social media.'
+    description: 'Strategic media campaigns to get your music, brand, or event heard by a wider audience through radio, online press, and social media.',
+    link: '/promotions'
   },
    {
     icon: <Mic className="h-12 w-12 text-primary" />,
     title: 'Corporate & Private Events',
-    description: 'Professional A/V and entertainment solutions for any function, from corporate galas to private parties. Let us make your event unforgettable.'
+    description: 'Professional A/V and entertainment solutions for any function, from corporate galas to private parties. Let us make your event unforgettable.',
+    link: '/contact'
   }
 ];
 
@@ -191,7 +199,7 @@ export default function ServicesPage() {
                          </Button>
                        </DialogTrigger>
                     ) : (
-                       <Link href="/contact">
+                       <Link href={service.link || '/contact'}>
                         <Button variant="outline" className="w-full">
                             Learn More
                         </Button>
