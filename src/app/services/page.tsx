@@ -42,7 +42,7 @@ const services = [
     title: 'Artist Management',
     description:
       'Dedicated career guidance, booking, and promotional support for emerging and established artists. We handle the business so you can focus on the music.',
-    link: '/contact',
+    link: '/about',
   },
   {
     icon: <Calendar className="h-12 w-12 text-primary" />,
