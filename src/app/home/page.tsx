@@ -31,6 +31,7 @@ import {
 } from '@/components/ui/card';
 import { Footer } from '@/components/footer';
 import { useEffect, useState } from 'react';
+import { LandingVideo } from '@/components/landing-video';
 
 interface NewsArticle {
   id: string;
@@ -127,15 +128,8 @@ export default function HomePage() {
             <CarouselContent>
               <CarouselItem>
                 <div className="relative h-[70vh] w-full">
-                  <Image
-                    src="https://picsum.photos/1920/1080"
-                    alt="Welcome to Ranking Family"
-                    fill
-                    objectFit="cover"
-                    data-ai-hint="music studio control room"
-                    className="absolute z-0 opacity-40"
-                  />
-                  <div className="absolute z-10 flex h-full w-full flex-col items-center justify-center text-center">
+                  <LandingVideo />
+                   <div className="absolute z-10 flex h-full w-full flex-col items-center justify-center text-center bg-black/60">
                     <h1 className="text-5xl font-bold md:text-7xl">
                       Welcome to Ranking Family
                     </h1>
