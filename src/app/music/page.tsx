@@ -4,7 +4,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Footer } from '@/components/footer';
-import { Music, Play, Pause, WifiOff, ArrowLeft, ArrowRight, Newspaper, Diamond, LogIn, Loader2, Info } from 'lucide-react';
+import { Music, Play, Pause, WifiOff, ArrowLeft, ArrowRight, Newspaper, Diamond, LogIn, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
@@ -203,11 +203,6 @@ export default function MusicPage() {
                     <div className="flex-grow ml-4">
                       <h4 className="font-semibold" dangerouslySetInnerHTML={{ __html: song.title}} />
                       <p className="text-sm text-gray-400">{song.artist}</p>
-                    </div>
-                    <div className="flex gap-2 ml-4">
-                      <Button variant="outline" size="icon" className="pointer-events-none">
-                        <Info className="h-4 w-4" />
-                      </Button>
                     </div>
                   </Card>
                 </a>

@@ -120,7 +120,7 @@ export default function AboutPage() {
             Want to join the family?
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-300">
-            We're always looking for new talent. If you think you have what it takes, get in touch.
+            We&apos;re always looking for new talent. If you think you have what it takes, get in touch.
           </p>
           <Button size="lg" className="mt-8">
             Contact Us <ArrowRight className="ml-2 h-5 w-5" />

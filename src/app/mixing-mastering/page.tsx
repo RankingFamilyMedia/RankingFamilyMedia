@@ -4,7 +4,7 @@
 import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Check, Sparkles, SlidersHorizontal, Equalizer, ArrowRight } from 'lucide-react';
+import { Check, Sparkles, SlidersHorizontal, Sliders, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 const services = [
@@ -28,7 +28,7 @@ const services = [
       'Competitive loudness and clarity for streaming',
       'Up to 2 revisions',
     ],
-    icon: <Equalizer className="h-10 w-10 text-primary" />,
+    icon: <Sliders className="h-10 w-10 text-primary" />,
   },
   {
     title: 'Stereo Mastering',
@@ -104,7 +104,7 @@ export default function MixingMasteringPage() {
             Ready to finalize your track?
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-300">
-            Contact us with your project files and let's give your music the professional finish it deserves.
+            Contact us with your project files and let&apos;s give your music the professional finish it deserves.
           </p>
           <Link href="/contact">
             <Button size="lg" className="mt-8">
