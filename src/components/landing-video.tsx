@@ -1,35 +1,9 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-
 export function LandingVideo() {
     // ID for the user-provided background video
     const videoId = "BRjDORRsF1I"; 
-    const [isMounted, setIsMounted] = useState(false);
-
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
-
-    // Static placeholder for server-side rendering and initial client render
-    const placeholder = (
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-            <Image
-                src="https://picsum.photos/1920/1080"
-                alt="Ranking Family Multimedia background"
-                fill
-                style={{objectFit: 'cover'}}
-                className="opacity-40"
-                priority
-            />
-        </div>
-    );
-
-    if (!isMounted) {
-        return placeholder;
-    }
 
     return (
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
