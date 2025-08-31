@@ -2,8 +2,8 @@
 'use client';
 
 export function LandingVideo() {
-    // ID for "Free To Use Background Video" from YouTube
-    const videoId = "uXl_N_35H8E"; 
+    // ID for the user-provided background video
+    const videoId = "BRjDORRsF1I"; 
 
     return (
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
