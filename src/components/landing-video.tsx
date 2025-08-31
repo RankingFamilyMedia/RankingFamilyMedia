@@ -1,9 +1,20 @@
 
 'use client';
 
+import { useState, useEffect } from 'react';
+
 export function LandingVideo() {
     // ID for the user-provided background video
     const videoId = "BRjDORRsF1I"; 
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    if (!isMounted) {
+        return null;
+    }
 
     return (
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">

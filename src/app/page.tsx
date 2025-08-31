@@ -8,19 +8,7 @@ import { LandingVideo } from "@/components/landing-video";
 export default function Home() {
   return (
     <main className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden">
-      {/* Fallback Image with Priority */}
-      <div className="absolute top-0 left-0 w-full h-full z-0">
-        <Image
-          src="https://picsum.photos/1920/1080"
-          alt="Ranking Family background"
-          fill
-          style={{ objectFit: 'cover' }}
-          className="opacity-40"
-          data-ai-hint="music production"
-          priority
-        />
-      </div>
-      
+      {/* Background video will be client-side rendered */}
       <LandingVideo />
 
       <div className="absolute top-0 left-0 w-full h-full bg-black/60 z-10"></div>
