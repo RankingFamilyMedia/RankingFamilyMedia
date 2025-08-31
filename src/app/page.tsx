@@ -1,14 +1,11 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
 import { LandingVideo } from "@/components/landing-video";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <main className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden">
-      {/* Background video will be client-side rendered */}
       <LandingVideo />
 
       <div className="absolute top-0 left-0 w-full h-full bg-black/60 z-10"></div>
