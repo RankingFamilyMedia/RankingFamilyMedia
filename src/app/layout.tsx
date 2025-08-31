@@ -3,6 +3,7 @@
 
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "./video-background.css";
 import { cn } from "@/lib/utils";
 import { Header } from "@/components/header";
 import { PromoModal } from "@/components/promo-modal";

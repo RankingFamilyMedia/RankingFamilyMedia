@@ -1,4 +1,3 @@
-
 'use client';
 
 import {
@@ -128,7 +127,7 @@ export default function HomePage() {
             <CarouselContent>
               <CarouselItem>
                 <div className="relative h-[70vh] w-full">
-                  <LandingVideo />
+                   <LandingVideo />
                    <div className="absolute z-10 flex h-full w-full flex-col items-center justify-center text-center bg-black/60">
                     <h1 className="text-5xl font-bold md:text-7xl">
                       Welcome to Ranking Family
@@ -146,11 +145,11 @@ export default function HomePage() {
                     src="https://picsum.photos/1920/1080"
                     alt="Our Team"
                     fill
-                    objectFit="cover"
+                    style={{objectFit: 'cover'}}
                     data-ai-hint="team portrait"
-                    className="absolute z-0 opacity-40"
+                    className="absolute z-0"
                   />
-                  <div className="relative z-10 flex h-full flex-col items-center justify-center text-center">
+                   <div className="absolute z-10 flex h-full w-full flex-col items-center justify-center text-center bg-black/60">
                     <h2 className="text-5xl font-bold md:text-7xl">
                       Meet the Family
                     </h2>
@@ -171,11 +170,11 @@ export default function HomePage() {
                     src="https://picsum.photos/1920/1080"
                     alt="Our Services"
                     fill
-                    objectFit="cover"
+                    style={{objectFit: 'cover'}}
                     data-ai-hint="music production"
-                    className="absolute z-0 opacity-40"
+                    className="absolute z-0"
                   />
-                  <div className="relative z-10 flex h-full flex-col items-center justify-center text-center">
+                  <div className="absolute z-10 flex h-full w-full flex-col items-center justify-center text-center bg-black/60">
                     <h2 className="text-5xl font-bold md:text-7xl">
                       Our Services
                     </h2>
@@ -289,7 +288,7 @@ export default function HomePage() {
                             src={article.imageUrl}
                             alt={article.title}
                             fill
-                            objectFit="cover"
+                            style={{objectFit: 'cover'}}
                             data-ai-hint={article.imageHint}
                           />
                         </div>
