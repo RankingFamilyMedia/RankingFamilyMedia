@@ -44,3 +44,10 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+    .mobile-menu-content {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+    }
+}

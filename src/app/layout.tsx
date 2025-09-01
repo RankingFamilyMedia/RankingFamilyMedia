@@ -1,6 +1,4 @@
 
-'use client'
-
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "./video-background.css";
@@ -8,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Header } from "@/components/header";
 import { PromoModal } from "@/components/promo-modal";
 import Script from "next/script";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +29,7 @@ export default function RootLayout({
         <Header />
         {children}
         <PromoModal />
+        <Toaster />
       </body>
     </html>
   );
