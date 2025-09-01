@@ -71,6 +71,7 @@ export function PostPageClient({ postResult }: PostPageClientProps) {
                                           <Share2 className="mr-2 h-4 w-4" /> Share
                                       </Button>
                                   </div>
+                                  {post.imageUrl && (
                                    <div className="relative aspect-video w-full mb-6 rounded-lg overflow-hidden shadow-lg">
                                       <Image
                                           src={post.imageUrl}
@@ -80,6 +81,7 @@ export function PostPageClient({ postResult }: PostPageClientProps) {
                                           priority
                                       />
                                   </div>
+                                  )}
                               </header>
                               <div 
                                   className="prose prose-lg dark:prose-invert max-w-none mb-8" 
