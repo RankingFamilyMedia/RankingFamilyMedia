@@ -1,7 +1,4 @@
 
-'use client';
-
-import { useEffect, useState } from 'react';
 import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Calendar, Diamond, Loader2, LogIn, Newspaper, WifiOff, Folder } from 'lucide-react';
@@ -33,82 +30,59 @@ interface Category {
     slug: string;
 }
 
-
-export default function NewsArticlePage({ params }: { params: { id: string } }) {
-  const [article, setArticle] = useState<Article | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [latestNews, setLatestNews] = useState<NewsArticle[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
-
-
-  useEffect(() => {
-    if (!params.id) return;
-
-    async function fetchArticleData() {
-      setIsLoading(true);
-      try {
-        // Fetch main article
-        const articleResponse = await fetch(`https://legacy.rankingfamily.com/wp-json/wp/v2/posts/${params.id}?_embed`);
+async function getArticleData(id: string) {
+    try {
+        const articleResponse = await fetch(`https://legacy.rankingfamily.com/wp-json/wp/v2/posts/${id}?_embed`, { next: { revalidate: 3600 }});
         if (!articleResponse.ok) {
-          throw new Error('Failed to fetch article details.');
+            return { article: null, error: 'Failed to fetch article details.' };
         }
         const item = await articleResponse.json();
-        
-        setArticle({
-          id: item.id,
-          title: item.title.rendered,
-          content: item.content.rendered,
-          imageUrl: item.featured_image_url || 'https://picsum.photos/1200/600',
-          date: new Date(item.date).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          }),
-        });
-        
-        // Fetch latest news for sidebar
-        const newsResponse = await fetch('https://legacy.rankingfamily.com/wp-json/wp/v2/posts?_embed&per_page=5');
-        if (newsResponse.ok) {
-            const newsData = await newsResponse.json();
-            const formattedNews = newsData.map((article: any) => ({
-                id: article.id.toString(),
-                title: article.title.rendered,
-                date: new Date(article.date).toLocaleDateString('en-US', {
-                    year: 'numeric', month: 'long', day: 'numeric',
-                }),
-            }));
-            setLatestNews(formattedNews);
-        }
+        const article = {
+            id: item.id,
+            title: item.title.rendered,
+            content: item.content.rendered,
+            imageUrl: item.featured_image_url || 'https://picsum.photos/1200/600',
+            date: new Date(item.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+            }),
+        };
+        return { article, error: null };
+    } catch (err) {
+        return { article: null, error: 'An unexpected error occurred.' };
+    }
+}
+
+async function getSidebarData() {
+    try {
+        // Fetch latest news
+        const newsResponse = await fetch('https://legacy.rankingfamily.com/wp-json/wp/v2/posts?_embed&per_page=5', { next: { revalidate: 3600 }});
+        const newsData = newsResponse.ok ? await newsResponse.json() : [];
+        const latestNews = newsData.map((article: any) => ({
+            id: article.id.toString(),
+            title: article.title.rendered,
+            date: new Date(article.date).toLocaleDateString('en-US', {
+                year: 'numeric', month: 'long', day: 'numeric',
+            }),
+        }));
 
         // Fetch categories
-        const categoriesResponse = await fetch('https://legacy.rankingfamily.com/wp-json/wp/v2/categories?hide_empty=true');
-        if (categoriesResponse.ok) {
-            const categoriesData = await categoriesResponse.json();
-            setCategories(categoriesData);
-        }
-
-
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
+        const categoriesResponse = await fetch('https://legacy.rankingfamily.com/wp-json/wp/v2/categories?hide_empty=true', { next: { revalidate: 3600 }});
+        const categoriesData = categoriesResponse.ok ? await categoriesResponse.json() : [];
+        
+        return { latestNews, categories: categoriesData };
+    } catch (error) {
+        return { latestNews: [], categories: [] };
     }
+}
 
-    fetchArticleData();
-  }, [params.id]);
+
+export default async function NewsArticlePage({ params }: { params: { id: string } }) {
+  const { article, error } = await getArticleData(params.id);
+  const { latestNews, categories } = await getSidebarData();
 
   const renderContent = () => {
-    if (isLoading) {
-      return (
-        <div className="flex flex-col items-center justify-center text-center">
-            <Loader2 className="h-12 w-12 animate-spin text-primary" />
-            <p className="mt-4 text-lg">Loading Article...</p>
-        </div>
-      );
-    }
-
     if (error) {
        return (
         <div className="mt-4 rounded-lg border border-destructive/50 bg-destructive/10 p-4">
@@ -133,6 +107,7 @@ export default function NewsArticlePage({ params }: { params: { id: string } }) 
                     alt={article.title}
                     fill
                     style={{objectFit: "cover"}}
+                    priority
                 />
             </div>
             <header className="mt-8">
@@ -180,11 +155,11 @@ export default function NewsArticlePage({ params }: { params: { id: string } }) 
                   <CardContent>
                     {latestNews.length > 0 ? (
                       <ul className="space-y-3">
-                        {latestNews.map((article) => (
-                          <li key={article.id}>
-                            <Link href={`/news/${article.id}`} className="text-gray-300 hover:text-primary transition-colors">
-                               <span className="block font-medium line-clamp-2" dangerouslySetInnerHTML={{ __html: article.title }} />
-                               <span className="text-xs text-gray-500">{article.date}</span>
+                        {latestNews.map((newsItem) => (
+                          <li key={newsItem.id}>
+                            <Link href={`/news/${newsItem.id}`} className="text-gray-300 hover:text-primary transition-colors">
+                               <span className="block font-medium line-clamp-2" dangerouslySetInnerHTML={{ __html: newsItem.title }} />
+                               <span className="text-xs text-gray-500">{newsItem.date}</span>
                             </Link>
                           </li>
                         ))}
@@ -203,14 +178,12 @@ export default function NewsArticlePage({ params }: { params: { id: string } }) 
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        {isLoading && categories.length === 0 ? (
-                            <p>Loading categories...</p>
-                        ) : categories.length > 0 ? (
+                        {categories.length > 0 ? (
                             <ul className="space-y-2">
                                {categories.map((category) => (
                                    <li key={category.id}>
                                        <Link href={`/news/category/${category.slug}`} className="text-gray-300 hover:text-primary transition-colors flex justify-between">
-                                           <span>{category.name}</span>
+                                           <span dangerouslySetInnerHTML={{ __html: category.name }} />
                                            <span>({category.count})</span>
                                        </Link>
                                    </li>
