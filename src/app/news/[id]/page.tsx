@@ -155,7 +155,7 @@ export default async function NewsArticlePage({ params }: { params: { id: string
                   <CardContent>
                     {latestNews.length > 0 ? (
                       <ul className="space-y-3">
-                        {latestNews.map((newsItem) => (
+                        {latestNews.map((newsItem: NewsArticle) => (
                           <li key={newsItem.id}>
                             <Link href={`/news/${newsItem.id}`} className="text-gray-300 hover:text-primary transition-colors">
                                <span className="block font-medium line-clamp-2" dangerouslySetInnerHTML={{ __html: newsItem.title }} />
@@ -180,7 +180,7 @@ export default async function NewsArticlePage({ params }: { params: { id: string
                     <CardContent>
                         {categories.length > 0 ? (
                             <ul className="space-y-2">
-                               {categories.map((category) => (
+                               {categories.map((category: Category) => (
                                    <li key={category.id}>
                                        <Link href={`/news/category/${category.slug}`} className="text-gray-300 hover:text-primary transition-colors flex justify-between">
                                            <span dangerouslySetInnerHTML={{ __html: category.name }} />
