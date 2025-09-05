@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import './video-background.css';
 import { LandingVideo } from "@/components/landing-video";
 
 export default function Home() {
