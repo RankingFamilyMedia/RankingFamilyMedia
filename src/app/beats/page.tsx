@@ -57,12 +57,12 @@ function BeatsList() {
         const formattedBeats = data.map((item: any) => ({
           id: item.id,
           title: item.title.rendered,
-          producer: item.meta?.producer || 'N/A',
-          genre: item.meta?.genre || 'N/A',
-          bpm: item.meta?.bpm || 'N/A',
-          price: item.meta?.price || '0',
+          producer: item.producer,
+          genre: item.genre,
+          bpm: item.bpm,
+          price: item.price,
           imageUrl: item.featured_image_url || 'https://picsum.photos/600/400',
-          audioUrl: item.meta?.audio_url || '',
+          audioUrl: item.audio_url || '',
         }));
         setBeats(formattedBeats);
       } catch (err: any) {
@@ -400,3 +400,5 @@ export default function BeatsPage() {
     </div>
   );
 }
+
+    
