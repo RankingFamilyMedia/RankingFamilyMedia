@@ -30,6 +30,12 @@ interface Beat {
   audioUrl: string;
 }
 
+interface NewsArticle {
+  id: string;
+  title: string;
+  date: string;
+}
+
 function BeatsList() {
   const [beats, setBeats] = useState<Beat[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -223,7 +229,8 @@ function BeatsList() {
                       <Image 
                           src={beat.imageUrl || 'https://picsum.photos/200'} 
                           alt={beat.title} 
-                          fill
+                          width={96}
+                          height={96}
                           className="transition-transform duration-300 group-hover:scale-110 object-cover"
                       />
                   </div>
@@ -265,6 +272,31 @@ function BeatsList() {
 
 
 export default function BeatsPage() {
+    const [latestNews, setLatestNews] = useState<NewsArticle[]>([]);
+    
+    useEffect(() => {
+        async function fetchNews() {
+           try {
+             // Fetch latest news for sidebar
+            const newsResponse = await fetch('https://legacy.rankingfamily.com/wp-json/wp/v2/posts?_embed&per_page=5');
+            if (newsResponse.ok) {
+                const newsData = await newsResponse.json();
+                const formattedNews = newsData.map((article: any) => ({
+                    id: article.id.toString(),
+                    title: article.title.rendered,
+                    date: new Date(article.date).toLocaleDateString('en-US', {
+                        year: 'numeric', month: 'long', day: 'numeric',
+                    }),
+                }));
+                setLatestNews(formattedNews);
+            }
+           } catch (error) {
+            console.error("Failed to fetch news for sidebar", error)
+           }
+        }
+        fetchNews();
+    }, []);
+
   return (
     <div className="flex min-h-screen flex-col bg-[#1a1a1a] text-white">
       <main className="flex-1">
@@ -314,12 +346,20 @@ export default function BeatsPage() {
                 <CardTitle>Latest News</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-400">No recent news.</p>
-                <Link href="/news">
-                  <Button variant="link" className="p-0 mt-4 text-primary">
-                    View All News <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+                 {latestNews.length > 0 ? (
+                  <ul className="space-y-3">
+                    {latestNews.map((article) => (
+                      <li key={article.id}>
+                        <Link href={`/news/${article.id}`} className="text-gray-300 hover:text-primary transition-colors">
+                           <span className="block font-medium line-clamp-2" dangerouslySetInnerHTML={{ __html: article.title }} />
+                           <span className="text-xs text-gray-500">{article.date}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                   <p className="text-gray-400">No recent news.</p>
+                )}
               </CardContent>
             </Card>
 
