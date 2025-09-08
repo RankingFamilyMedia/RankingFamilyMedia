@@ -1,0 +1,33 @@
+name: Automated PR Workflow
+
+on:
+  workflow_dispatch:           # Manual trigger
+
+jobs:
+  update-code-and-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run code update script
+        run: |
+          # Example: run your custom update script
+          # Make sure this script creates changes in your repo
+          node scripts/update-external-links.js
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "Automated: Update external links for SEO"
+          title: "Automated PR: Update external links"
+          body: "This PR updates external links for SEO and security."
+          branch: "auto/update-external-links"
