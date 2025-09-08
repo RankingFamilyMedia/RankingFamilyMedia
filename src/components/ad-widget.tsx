@@ -12,11 +12,15 @@ declare global {
 
 export function AdWidget() {
     useEffect(() => {
-        try {
-            (window.adsbygoogle = window.adsbygoogle || []).push({});
-        } catch (err) {
-            console.error('AdSense error:', err);
-        }
+        const timer = setTimeout(() => {
+            try {
+                (window.adsbygoogle = window.adsbygoogle || []).push({});
+            } catch (err) {
+                console.error('AdSense error:', err);
+            }
+        }, 100); // Small delay to ensure container is rendered
+
+        return () => clearTimeout(timer);
     }, []);
 
     return (
