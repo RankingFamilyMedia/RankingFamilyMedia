@@ -57,10 +57,10 @@ function BeatsList() {
         const formattedBeats = data.map((item: any) => ({
           id: item.id,
           title: item.title.rendered,
-          producer: item.producer,
-          genre: item.genre,
-          bpm: item.bpm,
-          price: item.price,
+          producer: item.producer || 'N/A',
+          genre: item.genre || 'N/A',
+          bpm: item.bpm || 'N/A',
+          price: item.price || '0',
           imageUrl: item.featured_image_url || 'https://picsum.photos/600/400',
           audioUrl: item.audio_url || '',
         }));
@@ -400,5 +400,3 @@ export default function BeatsPage() {
     </div>
   );
 }
-
-    
