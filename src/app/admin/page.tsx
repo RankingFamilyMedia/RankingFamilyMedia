@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -47,7 +48,7 @@ function ExistingBeats() {
           genre: item.meta?.genre || 'N/A',
           bpm: item.meta?.bpm || 'N/A',
           price: item.meta?.price || '0',
-          imageUrl: item.featured_image_url || 'https://picsum.photos/200',
+          imageUrl: item.featured_image_url || 'https://picsum.photos/200/200',
           audioUrl: item.meta?.audio_url || '',
         }));
         setBeats(formattedBeats);

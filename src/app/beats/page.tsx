@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Button } from '@/components/ui/button';
@@ -227,7 +228,7 @@ function BeatsList() {
                 <Card key={beat.id} className="bg-gray-800 border-gray-700 overflow-hidden group flex items-center p-4">
                   <div className="relative h-24 w-24 flex-shrink-0 rounded-md overflow-hidden">
                       <Image 
-                          src={beat.imageUrl || 'https://picsum.photos/200'} 
+                          src={beat.imageUrl || 'https://picsum.photos/200/200'} 
                           alt={beat.title} 
                           width={96}
                           height={96}
