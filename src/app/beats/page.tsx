@@ -57,12 +57,12 @@ function BeatsList() {
         const formattedBeats = data.map((item: any) => ({
           id: item.id,
           title: item.title.rendered,
-          producer: item.producer || 'N/A',
-          genre: item.genre || 'N/A',
-          bpm: item.bpm || 'N/A',
-          price: item.price || '0',
+          producer: item.meta?.producer || 'N/A',
+          genre: item.meta?.genre || 'N/A',
+          bpm: item.meta?.bpm || 'N/A',
+          price: item.meta?.price || '0',
           imageUrl: item.featured_image_url || 'https://picsum.photos/600/400',
-          audioUrl: item.audio_url || '',
+          audioUrl: item.meta?.audio_url || '',
         }));
         setBeats(formattedBeats);
       } catch (err: any) {
@@ -179,8 +179,7 @@ function BeatsList() {
                     <Image 
                         src={beat.imageUrl || 'https://picsum.photos/600/400'} 
                         alt={beat.title} 
-                        width={600}
-                        height={400}
+                        fill
                         className="transition-transform duration-300 group-hover:scale-110 object-cover"
                     />
                      {beat.audioUrl && (
@@ -230,8 +229,7 @@ function BeatsList() {
                       <Image 
                           src={beat.imageUrl || 'https://picsum.photos/200/200'} 
                           alt={beat.title} 
-                          width={96}
-                          height={96}
+                          fill
                           className="transition-transform duration-300 group-hover:scale-110 object-cover"
                       />
                   </div>
@@ -400,3 +398,5 @@ export default function BeatsPage() {
     </div>
   );
 }
+
+    

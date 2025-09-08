@@ -44,12 +44,12 @@ function ExistingBeats() {
         const formattedBeats = data.map((item: any) => ({
           id: item.id,
           title: item.title.rendered,
-          producer: item.producer || 'N/A',
-          genre: item.genre || 'N/A',
-          bpm: item.bpm || 'N/A',
-          price: item.price || '0',
+          producer: item.meta?.producer || 'N/A',
+          genre: item.meta?.genre || 'N/A',
+          bpm: item.meta?.bpm || 'N/A',
+          price: item.meta?.price || '0',
           imageUrl: item.featured_image_url || 'https://picsum.photos/200/200',
-          audioUrl: item.audio_url || '',
+          audioUrl: item.meta?.audio_url || '',
         }));
         setBeats(formattedBeats);
       } catch (err: any) {
@@ -418,3 +418,5 @@ export default function AdminPage() {
     </div>
   );
 }
+
+    
