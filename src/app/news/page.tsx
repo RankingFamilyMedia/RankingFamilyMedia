@@ -143,11 +143,11 @@ export default function NewsPage() {
                       <Image
                         src={article.imageUrl}
                         alt={article.title}
-                        width={1920}
-                        height={1080}
+                        fill
                         style={{ objectFit: 'cover' }}
-                        className="opacity-40 w-full h-full"
+                        className="opacity-40"
                         data-ai-hint={article.imageHint}
+                        priority={index === 0}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
                       <div className="relative z-10 flex h-full flex-col items-center justify-end text-center p-8 md:p-16">
@@ -170,7 +170,7 @@ export default function NewsPage() {
               <h2 className="text-3xl font-bold">More News</h2>
               <div className="mt-6">
                 {loading ? (
-                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-pulse">
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-pulse">
                      {[...Array(ARTICLES_PER_PAGE)].map((_, i) => (
                        <Card key={i} className="flex flex-col overflow-hidden bg-gray-800 border-gray-700">
                           <div className="relative h-48 w-full bg-gray-700"></div>
@@ -188,16 +188,15 @@ export default function NewsPage() {
                       <p className="mt-1 text-destructive/80">{error}</p>
                     </div>
                 ) : (
-                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                     {paginatedArticles.map((article) => (
                       <Card key={article.id} className="flex flex-col overflow-hidden bg-gray-800 border-gray-700">
                         <div className="relative h-48 w-full">
                           <Image
                             src={article.imageUrl}
                             alt={article.title}
-                            width={600}
-                            height={400}
-                            className="object-cover w-full h-full"
+                            fill
+                            className="object-cover"
                             data-ai-hint={article.imageHint}
                           />
                         </div>

@@ -132,9 +132,8 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
               <Image
                 src={article.imageUrl}
                 alt={article.title}
-                width={600}
-                height={400}
-                className="object-cover w-full h-full"
+                fill
+                className="object-cover"
                 data-ai-hint={article.imageHint}
               />
             </div>

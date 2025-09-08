@@ -142,8 +142,7 @@ export default function SongPage({ params }: { params: { id: string } }) {
                         <Image 
                             src={song.imageUrl}
                             alt={song.title}
-                            width={600}
-                            height={600}
+                            fill
                             className="object-cover"
                         />
                     </div>

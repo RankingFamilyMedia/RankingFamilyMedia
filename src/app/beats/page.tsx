@@ -173,9 +173,8 @@ function BeatsList() {
                     <Image 
                         src={beat.imageUrl || 'https://picsum.photos/600/400'} 
                         alt={beat.title} 
-                        width={600}
-                        height={400}
-                        className="transition-transform duration-300 group-hover:scale-110 object-cover w-full h-full"
+                        fill
+                        className="transition-transform duration-300 group-hover:scale-110 object-cover"
                     />
                      {beat.audioUrl && (
                       <Button 
@@ -224,9 +223,8 @@ function BeatsList() {
                       <Image 
                           src={beat.imageUrl || 'https://picsum.photos/200'} 
                           alt={beat.title} 
-                          width={200}
-                          height={200}
-                          className="transition-transform duration-300 group-hover:scale-110 object-cover w-full h-full"
+                          fill
+                          className="transition-transform duration-300 group-hover:scale-110 object-cover"
                       />
                   </div>
                    {beat.audioUrl && (
