@@ -1,27 +1,9 @@
 {
-  "dataconnect": {
-    "source": "dataconnect"
-  },
   "hosting": {
     "source": ".",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "frameworksBackend": {
       "region": "us-central1"
-    },
-    "rewrites": [
-      {
-        "source": "**",
-        "function": "ssrjunglebeatsmarketpla"
-      }
-    ]
-  },
-  "emulators": {
-    "dataconnect": {
-      "port": 9399
     }
   }
 }

@@ -5,7 +5,7 @@ import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card';
 import { Check, Star, ArrowRight } from 'lucide-react';
-import { useDataConnect } from '@tanstack-query-firebase/react-data-connect';
+import { useDataConnect } from '@/dataconnect-generated/js/react';
 import { AllPromotionPackages, AllPromotionPackagesData, AllPromotionPackagesVariables } from '@/dataconnect-generated/js/default-connector';
 
 

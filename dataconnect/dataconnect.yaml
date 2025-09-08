@@ -8,4 +8,6 @@ schema:
       database: "fdcdb"
       cloudSql:
         instanceId: "ranking-fdc"
-connectorDirs: ["./default-connector"]
+        # schemaValidation: "STRICT"     # STRICT mode makes Postgres schema match Data Connect exactly.
+        # schemaValidation: "COMPATIBLE" # COMPATIBLE mode makes Postgres schema compatible with Data Connect.
+connectorDirs: ["./example"]
