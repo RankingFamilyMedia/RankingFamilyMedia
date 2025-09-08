@@ -398,5 +398,3 @@ export default function BeatsPage() {
     </div>
   );
 }
-
-    
