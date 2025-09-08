@@ -41,7 +41,7 @@ async function getArticleData(id: string) {
             id: item.id,
             title: item.title.rendered,
             content: item.content.rendered,
-            imageUrl: item.featured_image_url || 'https://picsum.photos/1200/600',
+            imageUrl: item._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://picsum.photos/1200/600',
             date: new Date(item.date).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',

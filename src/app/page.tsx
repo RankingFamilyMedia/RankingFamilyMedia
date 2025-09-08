@@ -57,7 +57,7 @@ export default function HomePage() {
           id: article.id.toString(),
           title: article.title.rendered,
           description: article.excerpt.rendered.replace(/<[^>]+>/g, ''), // Strip HTML tags
-          imageUrl: article.featured_image_url || 'https://picsum.photos/600/400',
+          imageUrl: article._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://picsum.photos/600/400',
           imageHint: 'news article',
           date: new Date(article.date).toLocaleDateString('en-US', {
             year: 'numeric',
@@ -288,9 +288,8 @@ export default function HomePage() {
                           <Image
                             src={article.imageUrl}
                             alt={article.title}
-                            width={600}
-                            height={400}
-                            className="object-cover w-full h-full"
+                            fill
+                            className="object-cover"
                             data-ai-hint={article.imageHint}
                           />
                         </div>

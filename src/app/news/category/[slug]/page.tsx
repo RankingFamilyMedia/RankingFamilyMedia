@@ -66,7 +66,7 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
           id: article.id.toString(),
           title: article.title.rendered,
           description: article.excerpt.rendered.replace(/<[^>]+>/g, ''),
-          imageUrl: article.featured_image_url || 'https://picsum.photos/600/400',
+          imageUrl: article._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://picsum.photos/600/400',
           imageHint: 'news article',
           date: new Date(article.date).toLocaleDateString('en-US', {
             year: 'numeric', month: 'long', day: 'numeric',
