@@ -171,7 +171,7 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
                 </Link>
             </div>
              <div className="max-w-7xl mx-auto text-center mb-12">
-                <h1 className="text-4xl font-bold">Category: {category?.name || 'Loading...'}</h1>
+                <h1 className="text-4xl font-bold">Category: <span dangerouslySetInnerHTML={{ __html: category?.name || 'Loading...' }}/></h1>
             </div>
             <div className="mx-auto max-w-7xl">
               {renderContent()}

@@ -143,9 +143,10 @@ export default function NewsPage() {
                       <Image
                         src={article.imageUrl}
                         alt={article.title}
-                        fill
+                        width={1920}
+                        height={1080}
                         style={{ objectFit: 'cover' }}
-                        className="opacity-40"
+                        className="opacity-40 w-full h-full"
                         data-ai-hint={article.imageHint}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
@@ -286,7 +287,7 @@ export default function NewsPage() {
                            {categories.map((category) => (
                                <li key={category.id}>
                                    <Link href={`/news/category/${category.slug}`} className="text-gray-300 hover:text-primary transition-colors flex justify-between">
-                                       <span>{category.name}</span>
+                                       <span dangerouslySetInnerHTML={{ __html: category.name }}/>
                                        <span>({category.count})</span>
                                    </Link>
                                </li>
