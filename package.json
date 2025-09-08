@@ -7,8 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "lint": "next lint"
   },
   "dependencies": {
     "@genkit-ai/googleai": "^1.0.0",
@@ -21,6 +20,7 @@
     "@radix-ui/react-tabs": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.15",
     "@tanstack/react-query": "^5.50.1",
+    "@tanstack-query-firebase/react-data-connect": "^0.3.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "embla-carousel-autoplay": "^8.1.5",
