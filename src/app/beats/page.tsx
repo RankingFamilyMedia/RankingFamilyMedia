@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Button } from '@/components/ui/button';
@@ -179,7 +178,8 @@ function BeatsList() {
                     <Image 
                         src={beat.imageUrl || 'https://picsum.photos/600/400'} 
                         alt={beat.title} 
-                        fill
+                        width={600}
+                        height={400}
                         className="transition-transform duration-300 group-hover:scale-110 object-cover"
                     />
                      {beat.audioUrl && (
