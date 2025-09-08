@@ -124,7 +124,7 @@ function ExistingBeats() {
       {beats.map(beat => (
         <Card key={beat.id} className="bg-gray-800 border-gray-700 flex items-center p-3">
           <div className="relative h-16 w-16 flex-shrink-0 rounded-md overflow-hidden">
-            <Image src={beat.imageUrl} alt={beat.title} fill style={{objectFit:"cover"}} />
+            <Image src={beat.imageUrl} alt={beat.title} width={64} height={64} style={{objectFit:"cover"}} />
           </div>
           {beat.audioUrl && (
             <Button variant="ghost" size="icon" className="ml-3" onClick={() => handlePlayPause(beat.id, beat.audioUrl)} disabled={loadingTrack === beat.id}>
@@ -418,4 +418,3 @@ export default function AdminPage() {
     </div>
   );
 }
-

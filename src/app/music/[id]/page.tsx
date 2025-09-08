@@ -142,7 +142,8 @@ export default function SongPage({ params }: { params: { id: string } }) {
                         <Image 
                             src={song.imageUrl}
                             alt={song.title}
-                            fill
+                            width={600}
+                            height={600}
                             style={{objectFit: "cover"}}
                         />
                     </div>
