@@ -194,8 +194,9 @@ export default function NewsPage() {
                           <Image
                             src={article.imageUrl}
                             alt={article.title}
-                            fill
-                            style={{objectFit: 'cover'}}
+                            width={600}
+                            height={400}
+                            className="object-cover w-full h-full"
                             data-ai-hint={article.imageHint}
                           />
                         </div>
@@ -333,5 +334,3 @@ export default function NewsPage() {
     </div>
   );
 }
-
-    

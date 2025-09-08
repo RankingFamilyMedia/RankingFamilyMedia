@@ -105,8 +105,9 @@ export default async function NewsArticlePage({ params }: { params: { id: string
                 <Image 
                     src={article.imageUrl}
                     alt={article.title}
-                    fill
-                    style={{objectFit: "cover"}}
+                    width={1200}
+                    height={600}
+                    className="object-cover w-full h-full"
                     priority
                 />
             </div>

@@ -187,7 +187,7 @@ export default function MusicPage() {
                 <a className="block">
                   <Card className="bg-gray-800 border-gray-700 flex items-center p-3 transition-colors hover:bg-gray-700/50">
                     <div className="relative h-16 w-16 flex-shrink-0 rounded-md overflow-hidden">
-                      <Image src={song.imageUrl || 'https://picsum.photos/200'} alt={song.title} width={64} height={64} style={{objectFit:"cover"}} />
+                      <Image src={song.imageUrl || 'https://picsum.photos/200'} alt={song.title} width={64} height={64} className="object-cover" />
                     </div>
                     {song.audioUrl && (
                       <Button variant="ghost" size="icon" className="ml-3" onClick={(e) => handlePlayPause(e, song.id, song.audioUrl)} disabled={loadingTrack === song.id}>

@@ -95,9 +95,9 @@ export default function VideosPage() {
                   <Image
                     src={video.imageUrl}
                     alt={video.title}
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    className="transition-transform duration-300 group-hover:scale-110"
+                    width={600}
+                    height={400}
+                    className="transition-transform duration-300 group-hover:scale-110 object-cover w-full h-full"
                   />
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <PlayCircle className="h-16 w-16 text-white" />

@@ -144,7 +144,7 @@ export default function SongPage({ params }: { params: { id: string } }) {
                             alt={song.title}
                             width={600}
                             height={600}
-                            style={{objectFit: "cover"}}
+                            className="object-cover"
                         />
                     </div>
                     {song.audioUrl && (
