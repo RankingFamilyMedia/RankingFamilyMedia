@@ -51,10 +51,10 @@ export default function SongPage({ params }: { params: { id: string } }) {
         const songData = {
           id: item.id,
           title: item.title.rendered,
-          artist: item.meta?.artist || 'Unknown Artist',
+          artist: item.artist || 'Unknown Artist',
           content: item.content.rendered,
           imageUrl: item.featured_image_url || 'https://picsum.photos/600/600',
-          audioUrl: item.meta?.audio_url || '',
+          audioUrl: item.audio_url || '',
         };
         setSong(songData);
 

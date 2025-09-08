@@ -59,9 +59,9 @@ export default function MusicPage() {
         const formattedSongs = songsData.map((item: any) => ({
           id: item.id,
           title: item.title.rendered,
-          artist: item.meta?.artist || 'Unknown Artist',
+          artist: item.artist || 'Unknown Artist',
           imageUrl: item.featured_image_url || 'https://picsum.photos/200',
-          audioUrl: item.meta?.audio_url || '',
+          audioUrl: item.audio_url || '',
         }));
         setSongs(formattedSongs);
 
