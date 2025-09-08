@@ -1,0 +1,33 @@
+mutation CreateNewTask @auth(level: USER) {
+  task_insert(data: {
+    title: "New Task",
+    description: "Description for new task",
+    priority: "High",
+    status: "In Progress",
+    assignedToId: "auth.uid"
+  })
+}
+
+query ListAllEvents @auth(level: PUBLIC) {
+  events {
+    id
+    name
+    eventDate
+    location
+  }
+}
+
+query ListMyTasks @auth(level: USER) {
+  tasks(where: {assignedToId: "auth.uid"}) {
+    id
+    title
+    description
+    priority
+    status
+    dueDate
+  }
+}
+
+mutation UpdateTaskStatus($id: UUID!, $status: String!) @auth(level: USER) {
+  task_update(key: {id: $id}, data: {status: $status})
+}

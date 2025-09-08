@@ -1,5 +1,5 @@
 specVersion: "v1"
-serviceId: "administrator"
+serviceId: "studio"
 location: "us-central1"
 schema:
   source: "./schema"
@@ -7,7 +7,10 @@ schema:
     postgresql:
       database: "fdcdb"
       cloudSql:
-        instanceId: "ranking-fdc"
+        instanceId: "studio-fdc"
         # schemaValidation: "STRICT"     # STRICT mode makes Postgres schema match Data Connect exactly.
         # schemaValidation: "COMPATIBLE" # COMPATIBLE mode makes Postgres schema compatible with Data Connect.
 connectorDirs: ["./example"]
+generatedSdk:
+  web:
+    outputDir: "./src/dataconnect"

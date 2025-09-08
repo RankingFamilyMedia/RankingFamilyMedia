@@ -1,33 +1,69 @@
 type User @table {
   displayName: String!
+  email: String!
+  role: String!
   createdAt: Timestamp!
-  email: String
   photoUrl: String
+  lastLogin: Timestamp
 }
 
 type Artist @table {
   name: String!
   genre: String!
+  status: String!
   createdAt: Timestamp!
   bio: String
-  photoUrl: String
+  contactEmail: String
+  website: String
   socialMediaLinks: [String]
+  manager: User
+}
+
+type Release @table {
+  artist: Artist!
+  title: String!
+  releaseType: String!
+  releaseDate: Date!
+  createdAt: Timestamp!
+  artworkUrl: String
+  description: String
+  distributor: String
+}
+
+type Track @table {
+  release: Release!
+  title: String!
+  duration: Int!
+  trackNumber: Int!
+  createdAt: Timestamp!
+  audioFileUrl: String
+  lyrics: String
 }
 
 type Event @table {
-  title: String!
-  date: Date!
-  time: String!
+  name: String!
+  eventType: String!
+  eventDate: Timestamp!
   location: String!
-  isPublic: Boolean!
   createdAt: Timestamp!
   description: String
+  venue: String
   ticketLink: String
-  creator: User
+  capacity: Int
 }
 
-type EventArtist @table(key: ["event", "artist"]) {
-  event: Event!
+type ArtistEvent @table(key: ["artist", "event"]) {
   artist: Artist!
+  event: Event!
+}
+
+type Task @table {
+  title: String!
+  status: String!
+  priority: String!
+  assignedTo: User!
   createdAt: Timestamp!
+  description: String
+  dueDate: Timestamp
+  completedAt: Timestamp
 }
