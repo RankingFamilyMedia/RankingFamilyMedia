@@ -31,3 +31,11 @@ type EventArtist @table(key: ["event", "artist"]) {
   artist: Artist!
   createdAt: Timestamp!
 }
+
+type PromotionPackage @table {
+  title: String!
+  price: String!
+  features: [String]!
+  isPopular: Boolean!
+  createdAt: Timestamp!
+}

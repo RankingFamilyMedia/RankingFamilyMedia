@@ -23,7 +23,7 @@ import { cn } from "@/lib/utils";
 import React from 'react';
 
 const navLinks = [
-  { href: "/home", label: "Home", icon: <Home className="h-5 w-5" /> },
+  { href: "/", label: "Home", icon: <Home className="h-5 w-5" /> },
   { href: "/about", label: "About", icon: <Info className="h-5 w-5" /> },
   { href: "/services", label: "Services", icon: <Users className="h-5 w-5" /> },
   { href: "/beats", label: "Buy Beats", icon: <ShoppingCart className="h-5 w-5" /> },
@@ -43,7 +43,7 @@ export function Header() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 flex h-20 items-center justify-between bg-black/50 px-4 md:px-8 backdrop-blur-sm">
-        <Link href="/home" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <Music className="h-8 w-8 text-primary" />
           <span className="text-xl md:text-2xl font-bold text-white shrink-0">
             Ranking Family Multimedia

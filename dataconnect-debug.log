@@ -1,0 +1,2 @@
+E0908 04:08:53.664709    8924 dev.go:79] Failed to load initial config from "/home/user/studio/dataconnect": could not read connector.yaml at `/home/user/studio/dataconnect/default-connector/connector.yaml`: open /home/user/studio/dataconnect/default-connector/connector.yaml: no such file or directory
+I0908 04:08:53.672780    8924 dev.go:102] Listening on address (HTTP + gRPC): 127.0.0.1:9399

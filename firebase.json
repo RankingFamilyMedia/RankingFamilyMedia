@@ -1,4 +1,7 @@
 {
+  "dataconnect": {
+    "source": "dataconnect"
+  },
   "hosting": {
     "source": ".",
     "ignore": [
@@ -15,5 +18,10 @@
         "function": "ssrjunglebeatsmarketpla"
       }
     ]
+  },
+  "emulators": {
+    "dataconnect": {
+      "port": 9399
+    }
   }
 }

@@ -5,47 +5,15 @@ import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card';
 import { Check, Star, ArrowRight } from 'lucide-react';
+import { useDataConnect } from '@tanstack-query-firebase/react-data-connect';
+import { AllPromotionPackages, AllPromotionPackagesData, AllPromotionPackagesVariables } from '@/dataconnect-generated/js/default-connector';
 
-const promotionPackages = [
-  {
-    title: 'Starter Boost',
-    price: 'GHS 500',
-    features: [
-      'Social media announcement',
-      '1-week placement on our homepage',
-      'Basic SEO for your track',
-      'Artist profiling and indexing',
-      '5 radio plays for 3 months',
-      'Publish on 19 websites',
-    ],
-    isPopular: false,
-  },
-  {
-    title: 'Artist Spotlight',
-    price: 'GHS 1,200',
-    features: [
-      'Everything in Starter Boost',
-      'Featured artist interview on our blog',
-      'Email newsletter feature',
-      'Targeted social media ads',
-    ],
-    isPopular: true,
-  },
-  {
-    title: 'Label-Mate',
-    price: 'GHS 2,500',
-    features: [
-      'Everything in Artist Spotlight',
-      'Music video promotion',
-      'Playlist pitching to curators',
-      'Dedicated press release',
-      'Managing social media handles',
-    ],
-    isPopular: false,
-  },
-];
 
 export default function PromotionsPage() {
+  const { data: promotionPackages } = useDataConnect<AllPromotionPackagesData, AllPromotionPackagesVariables>(
+    AllPromotionPackages,
+  );
+
   return (
     <div className="flex min-h-screen flex-col bg-[#1a1a1a] text-white">
       <main className="flex-1">
@@ -68,12 +36,12 @@ export default function PromotionsPage() {
 
         <section className="bg-[#121212] py-20 px-4 md:px-8">
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {promotionPackages.map((pkg) => (
+            {promotionPackages?.promotion_package?.map((pkg) => (
               <Card
                 key={pkg.title}
-                className={`flex flex-col border-gray-700 bg-gray-800 ${pkg.isPopular ? 'border-primary' : ''}`}
+                className={`flex flex-col border-gray-700 bg-gray-800 ${pkg.is_popular ? 'border-primary' : ''}`}
               >
-                {pkg.isPopular && (
+                {pkg.is_popular && (
                   <div className="flex justify-center -mt-4">
                     <div className="inline-flex items-center rounded-full bg-primary px-4 py-1 text-sm font-semibold text-primary-foreground">
                       <Star className="mr-2 h-4 w-4" />
@@ -98,7 +66,7 @@ export default function PromotionsPage() {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button variant={pkg.isPopular ? 'default' : 'outline'} className="w-full">
+                  <Button variant={pkg.is_popular ? 'default' : 'outline'} className="w-full">
                     Choose Package
                   </Button>
                 </CardFooter>

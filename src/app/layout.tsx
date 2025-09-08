@@ -7,6 +7,7 @@ import { Header } from "@/components/header";
 import { PromoModal } from "@/components/promo-modal";
 import Script from "next/script";
 import { Toaster } from "@/components/ui/toaster";
+import { AppProviders } from "@/components/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,10 +27,12 @@ export default function RootLayout({
       <body
         className={cn("min-h-screen font-sans antialiased", inter.className)}
       >
-        <Header />
-        {children}
-        <PromoModal />
-        <Toaster />
+        <AppProviders>
+          <Header />
+          {children}
+          <PromoModal />
+          <Toaster />
+        </AppProviders>
       </body>
     </html>
   );
