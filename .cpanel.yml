@@ -4,15 +4,21 @@ deployment:
     # 1) Paths
     - export DEPLOYPATH=/home/grinircc/public_html
 
-    # 2) Install
-    - /usr/local/bin/npm ci || /usr/local/bin/npm install --legacy-peer-deps
+    # 2) Make sure tools resolve (adjust if your host uses different paths)
+    - export PATH="/usr/local/bin:/usr/bin:/bin:$PATH"
 
-    # 3) Build static site (requires "export" in package.json scripts)
-    #    "build": "next build",
-    #    "export": "next export"
+    # 3) Clean install & build
+    - /usr/local/bin/npm ci || /usr/local/bin/npm install --legacy-peer-deps
     - /usr/local/bin/npm run build
     - /usr/local/bin/npm run export
 
-    # 4) Deploy only the static output
+    # 4) Deploy static output
     - /usr/bin/rsync -a --delete out/ $DEPLOYPATH
+
+    # 5) Write deploy metadata (so you can verify independently of cPanel UI)
+    - export SHA="$(/usr/bin/git rev-parse --short HEAD)"
+    - export AUTHOR="$(/usr/bin/git log -1 --pretty=format:'%an <%ae>')"
+    - export DATE="$(/usr/bin/git log -1 --date=iso --pretty=format:'%cd')"
+    - /bin/echo -e "Last Deployed SHA: $SHA\nAuthor: $AUTHOR\nDate: $DATE" > $DEPLOYPATH/deploy-info.txt
+
     git add . && git commit -m "Test deploy" && git push origin main
