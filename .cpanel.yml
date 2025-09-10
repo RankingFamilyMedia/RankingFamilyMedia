@@ -1,6 +1,17 @@
 ---
 deployment:
   tasks:
+    # 1) Paths
     - export DEPLOYPATH=/home/grinircc/public_html
-    - /bin/echo "Deployed: $(date)" > $DEPLOYPATH/deploy.txt
 
+    # 2) Install
+    - /usr/local/bin/npm ci || /usr/local/bin/npm install --legacy-peer-deps
+
+    # 3) Build static site (requires "export" in package.json scripts)
+    #    "build": "next build",
+    #    "export": "next export"
+    - /usr/local/bin/npm run build
+    - /usr/local/bin/npm run export
+
+    # 4) Deploy only the static output
+    - /usr/bin/rsync -a --delete out/ $DEPLOYPATH
