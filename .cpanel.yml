@@ -1,17 +1,14 @@
 ---
 deployment:
   tasks:
-    # set deployment path to your live site folder
     - export DEPLOYPATH=/home/grinircc/public_html
 
     # install dependencies
     - /bin/npm install --legacy-peer-deps
 
-    # build Next.js project
-    - /bin/npm run build
+    # build static Next.js export
+    - /bin/npm run export
 
-    # if you are using static export, deploy from /out folder
-    # - /bin/rsync -a out/ $DEPLOYPATH
+    # deploy only static files
+    - /bin/rsync -a out/ $DEPLOYPATH
 
-    # otherwise copy all files (for basic projects)
-    - /bin/rsync -a --exclude='.git' --exclude='node_modules' ./ $DEPLOYPATH
