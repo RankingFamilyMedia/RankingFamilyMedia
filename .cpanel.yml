@@ -2,13 +2,5 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/grinircc/public_html
-
-    # install dependencies
-    - /bin/npm install --legacy-peer-deps
-
-    # build static Next.js export
-    - /bin/npm run export
-
-    # deploy only static files
-    - /bin/rsync -a out/ $DEPLOYPATH
+    - /bin/echo "Deployed: $(date)" > $DEPLOYPATH/deploy.txt
 
